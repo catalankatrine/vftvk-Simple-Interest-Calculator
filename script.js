@@ -1,23 +1,33 @@
-let computeBtn = document.getElementById
-("compute-btn");
-let result = document.getElementById("result");
-let compute = () => {
-    let p = Number(document.getElementById("amount").value);
-    let r = Number(document.getElementById("rate").value);
-    let t = Number(document.getElementById("time").value);
-    let duration = document.getElementById("duration").value;
+function compute()
+{
+    var principal = document.getElementById("principal").value;
 
-    let simpleInterest = 
-        duration == "year" ? (p * r * t) / 100 : (p * r * t) / 1200;
-   
-    let principal = p + simpleInterest;
+    if(principal == "" || principal <= 0)
+    {
+        alert("Enter a positive number");
+        document.getElementById("principal").focus();
+        return;
+    }
+
+    var rate = document.getElementById("rate").value;
+    var years = document.getElementById("years").value;
+    var interest = principal * years * rate / 100;
+
+    var dateNow = new Date();
+    var yearNow = parseInt(dateNow.getFullYear()) + parseInt(years);
     
-    result.innerHTML = `<div>Principal Amount: <span>$
-        ${p.toFixed(
-            2
-        )}</span></div>
-        <div>Total Interest: <span>$${simpleInterest.toFixed(2)}</span></div>
-        <div>Total Amount: <span>$${principal.toFixed(2)}</span> </div>`;
-};
-computeBtn.addEventListener("click", compute);
-window.addEventListener("load", compute);
+    var resultDisplay = document.getElementById("result");
+    resultDisplay.innerHTML = "If you deposit " + "<span class='highlight'>" + principal + "</span>."  + ", <br> at an interest rate of "+ "<span class='highlight'>" + rate + "</span>%." + "<br> You will receive an amount of " + "<span class='highlight'>" + interest + "</span>" + ", <br> in the year " + "<span class='highlight'>" + yearNow + "</span>";
+}
+
+function SliderValue()
+{
+    var slider = document.getElementById("rate");
+    var output = document.getElementById("rate_val");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function() 
+    {
+        output.innerHTML = this.value;
+    }  
+}
