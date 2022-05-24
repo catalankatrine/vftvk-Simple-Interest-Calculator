@@ -39,11 +39,13 @@ table td {
 #principal {
     height: 25px;
     width: 190px;
+    border-radius: 10px;
 }
 
 #years {
     height: 35px;
     width: 200px;
+     border-radius: 10px;
 }
 
 footer {
